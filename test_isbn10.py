@@ -1,9 +1,18 @@
 import unittest
 
-from isbn10 import get_isbn10_checksum, is_valid_isbn10, is_valid_isbn10_format
+from isbn10 import (
+    format_isbn10,
+    get_isbn10_checksum,
+    is_valid_isbn10,
+    is_valid_isbn10_format
+)
 
 
 class ISBN10Test(unittest.TestCase):
+    def test_format_isbn10(self):
+        self.assertEqual(format_isbn10('1932698183'), '19-326-9818-3')
+        self.assertEqual(format_isbn10('855080603X'), '85-508-0603-X')
+
     def test_get_isbn10_checksum(self):
         self.assertEqual(get_isbn10_checksum('1932698183'), 264)
         self.assertEqual(get_isbn10_checksum('855080603X'), 253)

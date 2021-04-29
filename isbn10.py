@@ -1,7 +1,14 @@
 import re
 
 
-VALID_ISBN10_FORMAT = '^\\d{9}[0-9X]$'
+ISBN10_DIGIT_GROUPS = r'(\d{2})(\d{3})(\d{4})([0-9X])'
+ISBN10_FORMAT = r'\g<1>-\g<2>-\g<3>-\g<4>'
+VALID_ISBN10_FORMAT = r'^\d{9}[0-9X]$'
+
+
+def format_isbn10(isbn10):
+    isbn10_match = re.match(ISBN10_DIGIT_GROUPS, isbn10)
+    return isbn10_match.expand(ISBN10_FORMAT)
 
 
 def is_valid_isbn10(isbn10):
