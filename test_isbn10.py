@@ -11,6 +11,8 @@ class ISBN10Test(unittest.TestCase):
     def test_is_valid_isbn10(self):
         self.assertFalse(is_valid_isbn10('1932698184'))
         self.assertFalse(is_valid_isbn10('8550806030'))
+        self.assertFalse(is_valid_isbn10(1932698183))
+        self.assertFalse(is_valid_isbn10('855080603x'))
 
         self.assertTrue(is_valid_isbn10('1932698183'))
         self.assertTrue(is_valid_isbn10('855080603X'))

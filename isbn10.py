@@ -5,6 +5,9 @@ VALID_ISBN10_FORMAT = '^\\d{9}[0-9X]$'
 
 
 def is_valid_isbn10(isbn10):
+    if not is_valid_isbn10_format(isbn10):
+        return False
+
     isbn10_checksum = get_isbn10_checksum(isbn10)
     return isbn10_checksum % 11 == 0
 
