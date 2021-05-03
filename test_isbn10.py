@@ -13,9 +13,31 @@ from isbn10 import (
 class ISBN10Test(unittest.TestCase):
     def test_invalid_type_for_isbn10_constructor(self):
         with self.assertRaises(InvalidISBN10Error) as e:
-            ISBN10(1932698183)
+            ISBN10(1234567890)
 
         self.assertEqual(str(e.exception), 'Invalid ISBN-10 type.')
+
+    def test_invalid_format_for_isbn10_constructor(self):
+        with self.assertRaises(InvalidISBN10Error) as incomplete_code_error:
+            ISBN10('012345678')
+        self.assertEqual(
+            str(incomplete_code_error.exception),
+            'Invalid ISBN-10 format.'
+        )
+
+        with self.assertRaises(InvalidISBN10Error) as final_x_lower_error:
+            ISBN10('012345678x')
+        self.assertEqual(
+            str(final_x_lower_error.exception),
+            'Invalid ISBN-10 format.'
+        )
+
+        with self.assertRaises(InvalidISBN10Error) as too_many_digits_error:
+            ISBN10('0123456789X')
+        self.assertEqual(
+            str(too_many_digits_error.exception),
+            'Invalid ISBN-10 format.'
+        )
 
     def test_format_isbn10(self):
         with self.assertRaises(InvalidISBN10Error):
