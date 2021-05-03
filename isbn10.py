@@ -10,6 +10,10 @@ class InvalidISBN10Error(Exception):
     pass
 
 
+class ISBN10:
+    pass
+
+
 def format_isbn10(isbn10):
     if not is_valid_isbn10(isbn10):
         raise InvalidISBN10Error('Invalid ISBN-10 code.')
