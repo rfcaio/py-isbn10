@@ -12,10 +12,12 @@ from isbn10 import (
 
 class ISBN10Test(unittest.TestCase):
     def test_invalid_type_for_isbn10_constructor(self):
-        with self.assertRaises(InvalidISBN10Error) as e:
+        with self.assertRaises(InvalidISBN10Error) as invalid_type_error:
             ISBN10(1234567890)
-
-        self.assertEqual(str(e.exception), 'Invalid ISBN-10 type.')
+        self.assertEqual(
+            str(invalid_type_error.exception),
+            'Invalid ISBN-10 type.'
+        )
 
     def test_invalid_format_for_isbn10_constructor(self):
         with self.assertRaises(InvalidISBN10Error) as incomplete_code_error:
