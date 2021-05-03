@@ -5,11 +5,18 @@ from isbn10 import (
     get_isbn10_checksum,
     is_valid_isbn10,
     is_valid_isbn10_format,
-    InvalidISBN10Error
+    InvalidISBN10Error,
+    ISBN10
 )
 
 
 class ISBN10Test(unittest.TestCase):
+    def test_invalid_type_for_isbn10_constructor(self):
+        with self.assertRaises(InvalidISBN10Error) as e:
+            ISBN10(1932698183)
+
+        self.assertEqual(str(e.exception), 'Invalid ISBN-10 type.')
+
     def test_format_isbn10(self):
         with self.assertRaises(InvalidISBN10Error):
             format_isbn10('193269818X')
