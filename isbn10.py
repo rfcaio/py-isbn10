@@ -18,6 +18,20 @@ class ISBN10:
         if re.match(VALID_ISBN10_FORMAT, value) is None:
             raise InvalidISBN10Error('Invalid ISBN-10 format.')
 
+        if self.__is_not_valid_isbn10(value):
+            raise InvalidISBN10Error('Invalid ISBN-10 value.')
+
+    def __is_not_valid_isbn10(self, value):
+        return self.__get_isbn10_checksum(value) % 11 != 0
+
+    def __get_isbn10_checksum(self, value):
+        result = 0
+        for index, digit_as_text in enumerate(value):
+            digit = 10 if digit_as_text == 'X' else int(digit_as_text)
+            coefficient = 10 - index
+            result += coefficient * digit
+        return result
+
 
 def format_isbn10(isbn10):
     if not is_valid_isbn10(isbn10):
