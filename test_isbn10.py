@@ -4,12 +4,16 @@ from isbn10 import (
     format_isbn10,
     get_isbn10_checksum,
     is_valid_isbn10,
-    is_valid_isbn10_format
+    is_valid_isbn10_format,
+    InvalidISBN10Error
 )
 
 
 class ISBN10Test(unittest.TestCase):
     def test_format_isbn10(self):
+        with self.assertRaises(InvalidISBN10Error):
+            format_isbn10('193269818X')
+
         self.assertEqual(format_isbn10('1932698183'), '19-326-9818-3')
         self.assertEqual(format_isbn10('855080603X'), '85-508-0603-X')
 

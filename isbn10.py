@@ -6,7 +6,14 @@ ISBN10_FORMAT = r'\g<1>-\g<2>-\g<3>-\g<4>'
 VALID_ISBN10_FORMAT = r'^\d{9}[0-9X]$'
 
 
+class InvalidISBN10Error(Exception):
+    pass
+
+
 def format_isbn10(isbn10):
+    if not is_valid_isbn10(isbn10):
+        raise InvalidISBN10Error('Invalid ISBN-10 code.')
+
     isbn10_match = re.match(ISBN10_DIGIT_GROUPS, isbn10)
     return isbn10_match.expand(ISBN10_FORMAT)
 
