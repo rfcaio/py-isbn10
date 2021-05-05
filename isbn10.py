@@ -21,6 +21,11 @@ class ISBN10:
         if self.__is_not_valid_isbn10(value):
             raise InvalidISBN10Error('Invalid ISBN-10 value.')
 
+        self.__value = value
+
+    def __str__(self):
+        return re.match(ISBN10_DIGIT_GROUPS, self.__value).expand(ISBN10_FORMAT)
+
     def __is_not_valid_isbn10(self, value):
         return self.__get_isbn10_checksum(value) % 11 != 0
 

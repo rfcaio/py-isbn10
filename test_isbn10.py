@@ -53,6 +53,13 @@ class ISBN10Test(unittest.TestCase):
             'Invalid ISBN-10 value.'
         )
 
+    def test_isbn10_string_conversion(self):
+        isbn = ISBN10('1932698183')
+        self.assertEqual(str(isbn), '19-326-9818-3')
+
+        isbn_with_final_x = ISBN10('855080603X')
+        self.assertEqual(str(isbn_with_final_x), '85-508-0603-X')
+
     def test_format_isbn10(self):
         with self.assertRaises(InvalidISBN10Error):
             format_isbn10('193269818X')
