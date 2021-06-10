@@ -31,17 +31,15 @@ class ISBN10Test(unittest.TestCase):
             'Invalid ISBN-10 format.'
         )
 
-    def test_invalid_value_for_isbn10_constructor(self):
-        with self.assertRaises(InvalidISBN10Error) as value_error:
-            ISBN10('1932698184')
-        self.assertEqual(str(value_error.exception), 'Invalid ISBN-10 value.')
+    def test_invalid_value(self):
+        with self.assertRaises(InvalidISBN10Error) as error:
+            ISBN10('1932698180')
+        self.assertEqual(str(error.exception), 'Invalid ISBN-10 value.')
 
-        with self.assertRaises(InvalidISBN10Error) as value_with_final_x_error:
+    def test_invalid_value_with_x_at_the_end(self):
+        with self.assertRaises(InvalidISBN10Error) as error:
             ISBN10('193269818X')
-        self.assertEqual(
-            str(value_with_final_x_error.exception),
-            'Invalid ISBN-10 value.'
-        )
+        self.assertEqual(str(error.exception), 'Invalid ISBN-10 value.')
 
     def test_isbn10_string_conversion(self):
         isbn = ISBN10('1932698183')
