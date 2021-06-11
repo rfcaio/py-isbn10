@@ -14,14 +14,12 @@ class ISBN10Test(unittest.TestCase):
             ISBN10('193269818')
         self.assertEqual(str(error.exception), 'Invalid ISBN-10 format.')
 
-    def test_invalid_format(self):
-        with self.assertRaises(InvalidISBN10Error) as small_x_error:
+    def test_value_with_small_x_at_the_end(self):
+        with self.assertRaises(InvalidISBN10Error) as error:
             ISBN10('855080603x')
-        self.assertEqual(
-            str(small_x_error.exception),
-            'Invalid ISBN-10 format.'
-        )
+        self.assertEqual(str(error.exception), 'Invalid ISBN-10 format.')
 
+    def test_invalid_format(self):
         with self.assertRaises(InvalidISBN10Error) as too_many_digits_error:
             ISBN10('19326981830')
         self.assertEqual(
