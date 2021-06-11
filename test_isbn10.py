@@ -9,14 +9,12 @@ class ISBN10Test(unittest.TestCase):
             ISBN10(1932698183)
         self.assertEqual(str(error.exception), 'Invalid ISBN-10 type.')
 
-    def test_invalid_format(self):
-        with self.assertRaises(InvalidISBN10Error) as incomplete_code_error:
+    def test_incomplete_value(self):
+        with self.assertRaises(InvalidISBN10Error) as error:
             ISBN10('193269818')
-        self.assertEqual(
-            str(incomplete_code_error.exception),
-            'Invalid ISBN-10 format.'
-        )
+        self.assertEqual(str(error.exception), 'Invalid ISBN-10 format.')
 
+    def test_invalid_format(self):
         with self.assertRaises(InvalidISBN10Error) as small_x_error:
             ISBN10('855080603x')
         self.assertEqual(
