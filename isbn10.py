@@ -6,20 +6,20 @@ ISBN10_FORMAT = r'\g<1>-\g<2>-\g<3>-\g<4>'
 VALID_ISBN10_FORMAT = r'^\d{9}[0-9X]$'
 
 
-class InvalidISBN10Error(Exception):
+class InvalidIsbn10Error(Exception):
     pass
 
 
 class ISBN10:
     def __init__(self, value):
         if type(value) != str:
-            raise InvalidISBN10Error('Invalid ISBN-10 type.')
+            raise InvalidIsbn10Error('Invalid ISBN-10 type.')
 
         if self.__has_invalid_format(value):
-            raise InvalidISBN10Error('Invalid ISBN-10 format.')
+            raise InvalidIsbn10Error('Invalid ISBN-10 format.')
 
         if self.__is_not_valid_isbn10(value):
-            raise InvalidISBN10Error('Invalid ISBN-10 value.')
+            raise InvalidIsbn10Error('Invalid ISBN-10 value.')
 
         self.__value = value
 
