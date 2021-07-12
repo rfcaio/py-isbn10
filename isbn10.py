@@ -10,7 +10,7 @@ class InvalidIsbn10Error(Exception):
     pass
 
 
-class ISBN10:
+class Isbn10:
     def __init__(self, value):
         if type(value) != str:
             raise InvalidIsbn10Error('Invalid ISBN-10 type.')
