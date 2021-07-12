@@ -15,7 +15,7 @@ class ISBN10:
         if type(value) != str:
             raise InvalidISBN10Error('Invalid ISBN-10 type.')
 
-        if self.__hasInvalidFormat(value):
+        if self.__has_invalid_format(value):
             raise InvalidISBN10Error('Invalid ISBN-10 format.')
 
         if self.__is_not_valid_isbn10(value):
@@ -26,7 +26,7 @@ class ISBN10:
     def __str__(self):
         return re.match(ISBN10_DIGIT_GROUPS, self.__value).expand(ISBN10_FORMAT)
 
-    def __hasInvalidFormat(self, value):
+    def __has_invalid_format(self, value):
         return re.match(VALID_ISBN10_FORMAT, value) is None
 
     def __is_not_valid_isbn10(self, value):
